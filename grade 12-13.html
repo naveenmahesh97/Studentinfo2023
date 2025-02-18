@@ -1,301 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grade 10 & 11 Student Information</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-	font-size: 15;
-  }
-  table {
-    border-collapse: collapse;
-    width: 60%;
-    margin: 30px auto;
-  }
-  th, td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-  th {
-    background-color: purple;
-    color: white;
-    width: 20%;
-    height: 50px;
-  }
-  input[type="number"], input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-  }
-  button[type="submit"], button[type="reset"] {
-    padding: 12px 24px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 10px;
-    border-radius: 0px;
-    color: white;
-    width: 100%;
-    background-color: #58D68D;
-  }
-  button[type="reset"] {
-    background-color: orange;
-  }
-  caption {
-    margin-top: 10px;
-    font-style: italic;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 12 & 13 Student Information</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        h1, h3 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+            font-size: 2.2em;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 30px auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #6c5ce7;
+            color: white;
+            font-weight: 600;
+        }
+
+        .stream-header {
+            background-color: #58D68D !important;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        input[type="number"]:focus, input[type="text"]:focus {
+            border-color: #6c5ce7;
+            outline: none;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button[type="submit"] {
+            background-color: #58D68D;
+            color: white;
+        }
+
+        button[type="reset"] {
+            background-color: #ff9f43;
+            color: white;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            width: 400px;
+            border-radius: 10px;
+            text-align: center;
+            animation: modalSlide 0.3s ease-out;
+        }
+
+        @keyframes modalSlide {
+            from {transform: translateY(-100px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        .modal-button {
+            background-color: #6c5ce7;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        caption {
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .subject-name {
+            font-weight: bold;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-<form 
-  method="POST" 
-  action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSf8qLi_mBt4BkFGDP0a5tUmIJAdrr0odZaahA6OcmMhssxteA/formResponse">
+    <div class="container">
+        <form method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSf8qLi_mBt4BkFGDP0a5tUmIJAdrr0odZaahA6OcmMhssxteA/formResponse" id="studentForm">
+            <h1>Grade 12 & 13 Student Information</h1>
+            <h3>Zonal Education Office - Thanamalwila</h3>
 
-<script>
-  document.addEventListener("contextmenu", function(e){
-    e.preventDefault();
-  }, false);
-</script>
+            <table>
+                <tr>
+                    <th><h4>School Census Number</h4></th>
+                    <td><input name="entry.304947479" type="text" required></td>
+                </tr>
+                <tr>
+                    <th><h4>Name of the School</h4></th>
+                    <td><input name="entry.477505856" type="text" required></td>
+                </tr>
+            </table>
 
+            <table>
+                <thead>
+                    <tr>
+                        <th>SUBJECT NAME</th>
+                        <th>GRADE 12</th>
+                        <th>GRADE 13</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="stream-header"><h3>ARTS Stream</h3></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Sinhala</td>
+                        <td><input name="entry.1091555470" type="number"></td>
+                        <td><input name="entry.1134754378" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Buddhism</td>
+                        <td><input name="entry.832013746" type="number"></td>
+                        <td><input name="entry.122427761" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Buddhist Civilization</td>
+                        <td><input name="entry.556098239" type="number"></td>
+                        <td><input name="entry.1057003267" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Communication and Media Studies</td>
+                        <td><input name="entry.575826754" type="number"></td>
+                        <td><input name="entry.51050648" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Dancing</td>
+                        <td><input name="entry.75671421" type="number"></td>
+                        <td><input name="entry.350339750" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Geography</td>
+                        <td><input name="entry.273565047" type="number"></td>
+                        <td><input name="entry.893406830" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">History</td>
+                        <td><input name="entry.1471934607" type="number"></td>
+                        <td><input name="entry.375560796" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Home Economics</td>
+                        <td><input name="entry.1509964669" type="number"></td>
+                        <td><input name="entry.2108110598" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Logic and Scientific Method</td>
+                        <td><input name="entry.1124958449" type="number"></td>
+                        <td><input name="entry.1925586489" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Oriental Music</td>
+                        <td><input name="entry.891058446" type="number"></td>
+                        <td><input name="entry.196546894" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Political Science</td>
+                        <td><input name="entry.1187682813" type="number"></td>
+                        <td><input name="entry.732357513" type="number"></td>
+                    </tr>
 
+                    <tr>
+                        <td colspan="3" class="stream-header"><h3>Commerce Stream</h3></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Accounting</td>
+                        <td><input name="entry.2078246398" type="number"></td>
+                        <td><input name="entry.2114622738" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Business Studies</td>
+                        <td><input name="entry.1742649925" type="number"></td>
+                        <td><input name="entry.242353573" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Economics</td>
+                        <td><input name="entry.229493485" type="number"></td>
+                        <td><input name="entry.329406143" type="number"></td>
+                    </tr>
 
+                    <tr>
+                        <td colspan="3" class="stream-header"><h3>Science & Mathematics Stream</h3></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Agriculture</td>
+                        <td><input name="entry.1460496081" type="number"></td>
+                        <td><input name="entry.1046754946" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Biology</td>
+                        <td><input name="entry.1325303534" type="number"></td>
+                        <td><input name="entry.725423949" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Physics</td>
+                        <td><input name="entry.93813083" type="number"></td>
+                        <td><input name="entry.297931887" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Chemistry</td>
+                        <td><input name="entry.1034375519" type="number"></td>
+                        <td><input name="entry.220907618" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Combine Mathematics</td>
+                        <td><input name="entry.1315058362" type="number"></td>
+                        <td><input name="entry.100688728" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Higher Mathematics</td>
+                        <td><input name="entry.345074277" type="number"></td>
+                        <td><input name="entry.128066045" type="number"></td>
+                    </tr>
 
+                    <tr>
+                        <td colspan="3" class="stream-header"><h3>Technology Stream</h3></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Agro Technology</td>
+                        <td><input name="entry.1271399857" type="number"></td>
+                        <td><input name="entry.1132169250" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Engineering Technology</td>
+                        <td><input name="entry.340955061" type="number"></td>
+                        <td><input name="entry.1413573758" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">ICT</td>
+                        <td><input name="entry.1538822890" type="number"></td>
+                        <td><input name="entry.1100567037" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Science For Technology</td>
+                        <td><input name="entry.1394353172" type="number"></td>
+                        <td><input name="entry.1113558056" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">Bio System Technology</td>
+                        <td><input name="entry.1409148374" type="number"></td>
+                        <td><input name="entry.1613607049" type="number"></td>
+                    </tr>
+                </tbody>
+            </table>
 
- 
-<table align="center" border="5" bordercolor="black"  >
-  
- <H1 align="center" style="color: rgb(0, 0, 0);">Grade 12 & 13 Student Information</H1>
- <H3 align="center" style="color: rgb(0, 0, 0);">Zonal Education Office - Thanamalwila</H3>
-  <tr>
+            <div class="button-container">
+                <button type="submit">SUBMIT</button>
+                <button type="reset">RESET</button>
+            </div>
 
-<col style="background-color:rgb(238, 255, 0)">
-  </colgroup>
-<tr>
-    <th style="AUTO""HEIGHT:30%"   BORDER="9" align="center"><h4 align="center">School Census Number</h4></th>
-  <td align="center" col style="background-color:rgb(255, 255, 255)" ><input name="entry.304947479" type="text" placeholder="" required ></td>
-  </tr>
-  <tr>
-<th style="AUTO""HEIGHT:30%"   BORDER="9" align="center"><h4 align="center">Name of the School</h4></th>
-  <td align="center" col style="background-color:rgb(255, 255, 255)" ><input name="entry.477505856" type="text" placeholder="" required ></td>
-  </tr>
-  <style type="text/css">
-    .tg  {border-collapse:collapse;border-spacing:0;}
-    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-      overflow:hidden;padding:10px 5px;word-break:normal;}
-    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-    </style>
-   <style type="text/css">
-    .tg  {border-collapse:collapse;border-spacing:0;}
-    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-      overflow:hidden;padding:10px 5px;word-break:normal;}
-    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-    .tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
-    .tg .tg-8gll{background-color:#ff8f8b;font-weight:bold;text-align:center;vertical-align:top}
-    .tg .tg-0lax{text-align:left;vertical-align:top}
-    </style>
+            <caption>ZEO - Thanamalwila</caption>
+        </form>
+    </div>
 
-    <table class="tg" style="undefined;table-layout: fixed; width: AUTO" align="center" bgcolor="white">
-    <colgroup>
-    <col style="width: 196px">
-    <col style="width: 119px">
-    </colgroup>
-    <thead>
-      <tr>
-        <th class="tg-8gll">SUBJECT NAME</th>
-        <th class="tg-8gll">GRADE 12 </th>
-        <th class="tg-8gll">GRADE 13 </th>
-      
-      </tr>
-      <th colspan="3" bgcolor="#58D68D" ><h3>ARTS Stream </th></h3>
-    </thead>
-    <tbody>
-      <tr>
-          <td class="tg-1wig">Sinhala</td>
-        <td> <input name="entry.1091555470" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.1134754378" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Buddhism</td>
-      <td> <input name="entry.832013746" type="number" placeholder=""  style="height:30"  </td>
-      <td> <input name="entry.122427761" type="number" placeholder=""  style="height:30"  </td>
- 
-    </tr>
-    <tr>
-      <td class="tg-1wig">Buddhist Civilization</td>
-    <td> <input name="entry.556098239" type="number" placeholder=""  style="height:30"  </td>
-    <td> <input name="entry.1057003267" type="number" placeholder=""  style="height:30"  </td>
+    <!-- Custom Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>Success!</h2>
+            <p>Your form has been submitted successfully.</p>
+            <button class="modal-button" onclick="closeModal()">OK</button>
+        </div>
+    </div>
 
-  </tr>
-  <tr>
-    <td class="tg-1wig">Communication and Media Studies</td>
-  <td> <input name="entry.575826754" type="number" placeholder=""  style="height:30"  </td>
-  <td> <input name="entry.51050648" type="number" placeholder=""  style="height:30"  </td>
+    <script>
+        // Prevent right-click
+        document.addEventListener("contextmenu", function(e){
+            e.preventDefault();
+        }, false);
 
-</tr>
-<tr>
-  <td class="tg-1wig">Dancing</td>
-<td> <input name="entry.75671421" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.350339750" type="number" placeholder=""  style="height:30"  </td>
+        // Form submission handling
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if(confirm('Are you sure you want to submit?')) {
+                // Get form data
+                const formData = new FormData(this);
+                
+                // Submit to Google Forms
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(() => {
+                    // Show custom success modal
+                    document.getElementById('successModal').style.display = 'block';
+                    // Reset form
+                    this.reset();
+                })
+                .catch(error => {
+                    alert('An error occurred. Please try again.');
+                    console.error('Error:', error);
+                });
+            }
+        });
 
-</tr>
-<tr>
-  <td class="tg-1wig">Geography</td>
-<td> <input name="entry.273565047" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.893406830" type="number" placeholder=""  style="height:30"  </td>
+        // Reset confirmation
+        document.querySelector('button[type="reset"]').addEventListener('click', function(e) {
+            if(!confirm('Are you sure you want to reset?')) {
+                e.preventDefault();
+            }
+        });
 
-</tr>
-<tr>
-  <td class="tg-1wig">History</td>
-<td> <input name="entry.1471934607" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.375560796" type="number" placeholder=""  style="height:30"  </td>
+        // Close modal function
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
 
-</tr>
-<tr>
-  <td class="tg-1wig">Home Economics</td>
-<td> <input name="entry.1509964669" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.2108110598" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Logic and Scientific Method</td>
-<td> <input name="entry.1124958449" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.1925586489" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Oriental Music</td>
-<td> <input name="entry.891058446" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.196546894" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Political Science</td>
-<td> <input name="entry.1187682813" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.732357513" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<th colspan="3" bgcolor="#58D68D" ><h3>Commerce Stream </th></h3>
-<tr>
-  <td class="tg-1wig">Accounting</td>
-<td> <input name="entry.2078246398" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.2114622738" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Business Studies</td>
-<td> <input name="entry.1742649925" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.242353573" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Economics</td>
-<td> <input name="entry.229493485" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.329406143" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<th colspan="3" bgcolor="#58D68D" ><h3>Science & Mathematics Stream </th></h3>
-<tr>
-  <td class="tg-1wig">Agriculture</td>
-<td> <input name="entry.1460496081" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.1046754946" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Biology</td>
-<td> <input name="entry.1325303534" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.725423949" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Physics</td>
-<td> <input name="entry.93813083" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.297931887" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Chemistry</td>
-<td> <input name="entry.1034375519" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.220907618" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Combine Mathematics</td>
-<td> <input name="entry.1315058362" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.100688728" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Higher Mathematics</td>
-<td> <input name="entry.345074277" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.128066045" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<th colspan="3" bgcolor="#58D68D" ><h3>Technology Stream </th></h3>
-<tr>
-  <td class="tg-1wig">Agro Technology</td>
-<td> <input name="entry.1271399857" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.1132169250" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Engineering Technology</td>
-<td> <input name="entry.340955061" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.1413573758" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">ICT</td>
-<td> <input name="entry.1538822890" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.1100567037" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Science For Technology</td>
-<td> <input name="entry.1394353172" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.1113558056" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-<tr>
-  <td class="tg-1wig">Bio System Technology</td>
-<td> <input name="entry.1409148374" type="number" placeholder=""  style="height:30"  </td>
-<td> <input name="entry.1613607049" type="number" placeholder=""  style="height:30"  </td>
-
-</tr>
-
-      
-
-
-
-    </tbody>
-    </table>
-
-<table  align="center">
-<tr>
-<table style="width:5% ""hight:20%"   align="center" >
-<td><h3 align="center"><button type="submit"  value="Submit" onclick="return confirm('Are you sure you want to submit?');" style="background-color: #58D68D;" ><h3>SUBMIT </h3></h2></button></h3></td>
- <td><h3 align="center"><button type="RESET"  value="reset" onclick="return confirm('Are you sure you want to Reset?');"  style="background-color: orange;"><h3>RESET </h3></h2></button></h3></td>
-
-
-</tr>
-<tr >
- <td><caption align="bottom">ZEO - Thanamalwila</caption></td></tr>
-   <script>
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwNtTQjqkka3cdvKz-K-hQlPKZumoknP3qPaEKwFFVc98B122fvYloIQ76pu8Hf8Nvo/exec'
-            const form = document.forms['google-sheet']
-          
-            form.addEventListener('submit', e => {
-              e.preventDefault()
-              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
-                .catch(error => console.error('Error!', error.message))
-            })
-          </script>
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('successModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
