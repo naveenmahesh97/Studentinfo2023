@@ -1,208 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grade 10 & 11 Student Information</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-  }
-  table {
-    border-collapse: collapse;
-    width: 60%;
-    margin: 30px auto;
-  }
-  th, td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-  th {
-    background-color: green;
-    color: white;
-    width: 20%;
-    height: 50px;
-  }
-  input[type="number"], input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-  }
-  button[type="submit"], button[type="reset"] {
-    padding: 12px 24px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 10px;
-    border-radius: 0px;
-    color: white;
-    width: 100%;
-    background-color: #58D68D;
-  }
-  button[type="reset"] {
-    background-color: orange;
-  }
-  caption {
-    margin-top: 10px;
-    font-style: italic;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 10 & 11 Student Information</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a5276;
+            --secondary-color: #2980b9;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --text-light: #ffffff;
+            --text-dark: #2c3e50;
+            --border-color: #d5d8dc;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+
+        .header h3 {
+            margin: 10px 0 0;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .category-header {
+            background-color: var(--success-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .category-header h3 {
+            margin: 0;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus, input[type="text"]:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button i {
+            margin-right: 8px;
+        }
+
+        .btn-submit {
+            background-color: var(--success-color);
+            color: var(--text-light);
+        }
+
+        .btn-reset {
+            background-color: var(--warning-color);
+            color: var(--text-light);
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #777;
+        }
+
+        .required-field {
+            color: #e74c3c;
+        }
+
+        .subject-row:nth-child(even) {
+            background-color: #f7fbff;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>Grade 10 & 11 Student Information</h1>
+            <h3>Zonal Education Office - Thanamalwila</h3>
+        </div>
 
-<form method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSebkxlptilaiv89B-vUrtrXKHZL_hdplXe_N5p60mFJOkfMjQ/formResponse">
-  
-  <table border="5" bordercolor="white">
-    <tr>
-      <th colspan="2" style="background-color: rgb(0, 25, 54);">
-        <h1 style="color: white;">Grade 10 & 11 Student Information</h1>
-        <h3 style="color: white;">Zonal Education Office - Thanamalwila</h3>
-      </th>
-    </tr>
-  </table>
+        <form method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSebkxlptilaiv89B-vUrtrXKHZL_hdplXe_N5p60mFJOkfMjQ/formResponse" id="student-form">
+            <table>
+                <tr>
+                    <th style="width: 40%;">Census Number <span class="required-field">*</span></th>
+                    <td><input name="entry.137928717" type="number" placeholder="Enter census number" required></td>
+                </tr>
+                <tr>
+                    <th>Name of the School <span class="required-field">*</span></th>
+                    <td><input name="entry.264980347" type="text" placeholder="Enter School Name" required></td>
+                </tr>
+            </table>
 
-  <table border="5" bordercolor="black" style="width: 60%;">
-    <tr>
-      <th style="background-color: #333;">Census Number</th>
-      <td><input name="entry.137928717" type="number" placeholder="Enter census number" required></td>
-    </tr>
-    <tr>
-      <th style="background-color: #333;">Name of the School</th>
-      <td><input name="entry.264980347" type="text" placeholder="Enter School Name" required></td>
-    </tr>
-  </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 60%;">SUBJECT NAME</th>
+                        <th style="width: 20%;">GRADE 10</th>
+                        <th style="width: 20%;">GRADE 11</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="category-header"><h3>First Category Subjects</h3></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Business & Accounting</td>
+                        <td><input name="entry.1318594706" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.1424643351" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Geography</td>
+                        <td><input name="entry.1778013858" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.1663573829" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Citizenship Education</td>
+                        <td><input name="entry.598742519" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.236705795" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Entrepreneurship studies</td>
+                        <td><input name="entry.74857758" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.822140235" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>2nd Language Tamil</td>
+                        <td><input name="entry.461205716" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.1290839142" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="3" class="category-header"><h3>Second Category Subjects</h3></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Art</td>
+                        <td><input name="entry.133155455" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.556230147" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Oriental Music</td>
+                        <td><input name="entry.1126959500" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.163453724" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Oriental Dancing</td>
+                        <td><input name="entry.1883093791" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.520064333" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Appreciation of Sinhala Lit.</td>
+                        <td><input name="entry.2098243216" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.551633256" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Drama and Theatre</td>
+                        <td><input name="entry.1190217354" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.1343605115" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="3" class="category-header"><h3>Third Category Subjects</h3></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>ICT</td>
+                        <td><input name="entry.492996282" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.1566206107" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Agriculture & Food Technology</td>
+                        <td><input name="entry.725964718" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.378776559" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Health & Physical Education</td>
+                        <td><input name="entry.1828027532" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.1859753132" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Communication & Media Studies</td>
+                        <td><input name="entry.1567041210" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.30463292" type="number" placeholder="Enter count"></td>
+                    </tr>
+                    <tr class="subject-row">
+                        <td>Home Economics</td>
+                        <td><input name="entry.1554930985" type="number" placeholder="Enter count"></td>
+                        <td><input name="entry.1569424759" type="number" placeholder="Enter count"></td>
+                    </tr>
+                </tbody>
+            </table>
 
-  <table border="5" bordercolor="black" style="width: 60%;">
-    <thead>
-      <tr>
-        <th style="background-color: #333;">SUBJECT NAME</th>
-        <th style="background-color: #333; width: 20%;">GRADE 10</th>
-        <th style="background-color: #333; width: 20%;">GRADE 11</th>
-      </tr>
-      <tr>
-        <th colspan="3" bgcolor="#58D68D"><h3 style="color: white;">First Category Subjects</h3></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-          <td class="tg-1wig">Business & Accounting </td>
-        <td> <input name="entry.1318594706" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.1424643351" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Geography</td>
-        <td> <input name="entry.1778013858" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.1663573829" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Citizenship Education</td>
-        <td> <input name="entry.598742519" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.236705795" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Entrepreneurship studies</td>
-        <td> <input name="entry.74857758" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.822140235" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">2 nd Language Tamil</td>
-        <td> <input name="entry.461205716" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.1290839142" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <th colspan="3" align="center" bgcolor="#58D68D" ><h3>Second Category Subjects</th></h3>
-      <tr>
-        <td class="tg-1wig">Art</td>
-        <td> <input name="entry.133155455" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.556230147" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Oriental Music</td>
-        <td> <input name="entry.1126959500" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.163453724" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Oriental Dancing</td>
-        <td> <input name="entry.1883093791" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.520064333" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Appreciation of Sinhala Lit.</td>
-        <td> <input name="entry.2098243216" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.551633256" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Drama and Theatre</td>
-        <td> <input name="entry.1190217354" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.1343605115" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <th colspan="3" align="center" bgcolor="#58D68D" ><h3>3rd Category Subjects</th></h3>
-      <tr>
-        <td class="tg-1wig">ICT</td>
-        <td> <input name="entry.492996282" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.1566206107" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Agriculture & Food Technology</td>
-        <td> <input name="entry.725964718" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.378776559" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Health & Physical Education</td>
-        <td> <input name="entry.1828027532" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.1859753132" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Communication & Media Studies</td>
-        <td> <input name="entry.1567041210" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.30463292" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      <tr>
-        <td class="tg-1wig">Home Economics</td>
-        <td> <input name="entry.1554930985" type="number" placeholder=""  style="height:30"  </td>
-        <td> <input name="entry.1569424759" type="number" placeholder=""  style="height:30"  </td>
-   
-      </tr>
-      
+            <div class="btn-container">
+                <button type="submit" class="btn-submit" id="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit
+                </button>
+                <button type="reset" class="btn-reset" id="reset-btn">
+                    <i class="fas fa-undo"></i> Reset
+                </button>
+            </div>
+        </form>
 
+        <div class="footer">
+            <p>© 2025 Zonal Education Office - Thanamalwila</p>
+        </div>
+    </div>
 
+    <script>
+        document.getElementById('student-form').addEventListener('submit', function(e) {
+            if(confirm('Are you sure you want to submit this form?')) {
+                // Form will submit normally
+            } else {
+                e.preventDefault(); // Prevent form submission
+            }
+        });
 
-    </tbody>
-    </table>
+        document.getElementById('reset-btn').addEventListener('click', function(e) {
+            if(!confirm('Are you sure you want to reset all form data?')) {
+                e.preventDefault(); // Prevent form reset
+            }
+        });
 
-<table  align="center">
-<tr>
-<table style="width:5% ""hight:20%"   align="center" >
-<td><h3 align="center"><button type="submit"  value="Submit" onclick="return confirm('Are you sure you want to submit?');" style="background-color: #58D68D;" ><h3>SUBMIT </h3></h2></button></h3></td>
- <td><h3 align="center"><button type="RESET"  value="reset" onclick="return confirm('Are you sure you want to Reset?');"  style="background-color: orange;"><h3>RESET </h3></h2></button></h3></td>
-
-
-</tr>
-<tr >
- <td><caption align="bottom">ZEO - Thanamalwila</caption></td></tr>
-   <script>
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwNtTQjqkka3cdvKz-K-hQlPKZumoknP3qPaEKwFFVc98B122fvYloIQ76pu8Hf8Nvo/exec'
-            const form = document.forms['google-sheet']
-          
-            form.addEventListener('submit', e => {
-              e.preventDefault()
-              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
-                .catch(error => console.error('Error!', error.message))
-            })
-          </script>
+        // Pre-fill zero for empty number fields on submission
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            const numberInputs = document.querySelectorAll('input[type="number"]');
+            numberInputs.forEach(input => {
+                if (input.value === '') {
+                    input.value = 0;
+                }
+            });
+        });
+    </script>
