@@ -6,104 +6,126 @@
 <title>Grade 12 & 13 Student Information</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    font-size: 15px;
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 60%;
-    margin: 30px auto;
-  }
-  
-  th, td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: purple;
-    color: white;
-    width: 20%;
-    height: 50px;
-  }
-  
-  input[type="number"], input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-  }
-  
-  button[type="submit"], button[type="reset"] {
-    padding: 12px 24px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 10px;
-    border-radius: 0px;
-    color: white;
-    width: 100%;
-  }
-  
-  button[type="submit"] {
-    background-color: #58D68D;
-  }
-  
-  button[type="reset"] {
-    background-color: orange;
-  }
-  
-  caption {
-    margin-top: 10px;
-    font-style: italic;
-  }
-  
-  .tg {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: AUTO;
-  }
-  
-  .tg td {
-    border: 1px solid black;
-    font-size: 14px;
-    overflow: hidden;
-    padding: 10px 5px;
-    word-break: normal;
-  }
-  
-  .tg th {
-    border: 1px solid black;
-    font-size: 14px;
-    font-weight: normal;
-    overflow: hidden;
-    padding: 10px 5px;
-    word-break: normal;
-  }
-  
-  .tg .tg-1wig {
-    font-weight: bold;
-    text-align: left;
-    vertical-align: top;
-  }
-  
-  .tg .tg-8gll {
-    background-color: #ff8f8b;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: top;
-  }
-  
-  .section-header {
-    background-color: #58D68D !important;
-    text-align: center;
-    color: black;
+  :root {
+    --primary-color: #4834d4;
+    --secondary-color: #686de0;
+    --success-color: #6ab04c;
+    --warning-color: #f0932b;
+    --background-color: #f5f6fa;
+    --border-radius: 8px;
   }
 
-  /* Success Modal Styles */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 600;
+  }
+
+  .header h3 {
+    margin: 10px 0 0;
+    color: var(--secondary-color);
+    font-weight: 500;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+  }
+
+  .section-header {
+    background-color: var(--secondary-color) !important;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="number"]:focus, input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-width: 200px;
+  }
+
+  button[type="submit"] {
+    background-color: var(--success-color);
+    color: white;
+  }
+
+  button[type="reset"] {
+    background-color: var(--warning-color);
+    color: white;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
   .modal {
     display: none;
     position: fixed;
@@ -111,36 +133,66 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
   }
 
   .modal-content {
     background-color: white;
     margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    width: 90%;
     max-width: 500px;
     text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   }
 
   .close {
-    color: #aaa;
+    color: #666;
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .close:hover {
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+    }
+
+    .container {
+      padding: 15px;
+    }
+
+    .header h1 {
+      font-size: 2em;
+    }
+
+    .buttons-container {
+      flex-direction: column;
+    }
+
+    button {
+      width: 100%;
+    }
   }
 </style>
 </head>
 <body>
+<div class="container">
+  <div class="header">
+    <h1>Grade 12 & 13 Student Information</h1>
+    <h3>Zonal Education Office - Thanamalwila</h3>
+  </div>
 
-<h1 align="center">Grade 12 & 13 Student Information</h1>
-<h3 align="center">Zonal Education Office - Thanamalwila</h3>
-
-<form id="student-form" target="hidden_iframe" method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSf8qLi_mBt4BkFGDP0a5tUmIJAdrr0odZaahA6OcmMhssxteA/formResponse">
-  <!-- Your existing form content goes here -->
-   <form id="student-form" method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSf8qLi_mBt4BkFGDP0a5tUmIJAdrr0odZaahA6OcmMhssxteA/formResponse">
+  <form id="student-form" target="hidden_iframe" method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSf8qLi_mBt4BkFGDP0a5tUmIJAdrr0odZaahA6OcmMhssxteA/formResponse">
+    <!-- Rest of the form content remains the same -->
     <table>
       <tr>
         <th>School Census Number</th>
@@ -302,19 +354,14 @@
     </table>
 
     <div class="buttons-container">
-      <button type="submit">
-        <i class="fas fa-paper-plane"></i> SUBMIT
-      </button>
-      <button type="reset">
-        <i class="fas fa-redo"></i> RESET
-      </button>
+      <button type="submit">SUBMIT</button>
+      <button type="reset">RESET</button>
     </div>
-   
-</form>
+  </form>
+</div>
 
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
-<!-- Success Modal -->
 <div id="successModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -324,12 +371,11 @@
 </div>
 
 <script>
-// Prevent right-click
+// Same JavaScript as original
 document.addEventListener("contextmenu", function(e) {
   e.preventDefault();
 }, false);
 
-// Form handling
 const form = document.getElementById('student-form');
 const modal = document.getElementById('successModal');
 const iframe = document.getElementById('hidden_iframe');
@@ -341,7 +387,6 @@ form.addEventListener('submit', function(e) {
   }
 
   if (confirm('Are you sure you want to submit this form?')) {
-    // Pre-fill zeros for empty number fields
     const numberInputs = document.querySelectorAll('input[type="number"]');
     numberInputs.forEach(input => {
       if (input.value === '') {
@@ -349,7 +394,6 @@ form.addEventListener('submit', function(e) {
       }
     });
     
-    // Show success modal after submission
     iframe.addEventListener('load', function() {
       modal.style.display = "block";
       form.reset();
@@ -362,19 +406,16 @@ form.addEventListener('submit', function(e) {
   }
 });
 
-// Reset confirmation
 document.querySelector('button[type="reset"]').addEventListener('click', function(e) {
   if (!confirm('Are you sure you want to reset all form data?')) {
     e.preventDefault();
   }
 });
 
-// Close modal when clicking X
 span.onclick = function() {
   modal.style.display = "none";
 }
 
-// Close modal when clicking outside
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
