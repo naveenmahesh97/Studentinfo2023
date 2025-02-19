@@ -1,275 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade 12 & 13 Student Information</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 20px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 12 & 13 Student Information</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    background-image: linear-gradient(120deg, #f5f7fa 0%, #e0e5ec 100%);
+    margin: 0;
+    padding: 20px;
+    font-size: 15px;
+  }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
+  .container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-        h1, h3, h4 {
-            text-align: center;
-            color: #2c3e50;
-            margin: 10px 0;
-        }
+  h1, h3 {
+    text-align: center;
+    color: #000;
+  }
 
-        table {
-            border-collapse: collapse;
-            width: 90%;
-            margin: 20px auto;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+  table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 30px auto;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
 
-        th, td {
-            padding: 15px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
+  th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
 
-        th {
-            background-color: #6c5ce7;
-            color: white;
-            font-weight: 600;
-        }
+  th {
+    background: linear-gradient(135deg, #3a0ca3 0%, #480ca8 100%);
+    color: white;
+    font-weight: 600;
+  }
 
-        .stream-header {
-            background-color: #58D68D !important;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+  td {
+    text-align: left;
+  }
 
-        .stream-header h3 {
-            margin: 0;
-            color: white;
-        }
+  .section-header th {
+    background: linear-gradient(to right, #58D68D, #2ecc71);
+    text-align: center;
+    padding: 15px;
+    font-size: 1.1rem;
+  }
 
-        input[type="number"], input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
+  input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
 
-        input:focus {
-            border-color: #6c5ce7;
-            outline: none;
-        }
+  input:focus {
+    outline: none;
+    border-color: #4895ef;
+    box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.25);
+  }
 
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+  }
 
-        button {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            color: white;
-            transition: transform 0.2s, box-shadow 0.2s;
-            min-width: 150px;
-        }
+  button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
 
-        button[type="submit"] {
-            background-color: #58D68D;
-        }
+  button[type="submit"] {
+    background-color: #58D68D;
+  }
 
-        button[type="reset"] {
-            background-color: #ff9f43;
-        }
+  button[type="reset"] {
+    background-color: #f39c12;
+  }
 
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
 
-        /* Custom Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-        }
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-style: italic;
+  }
 
-        .modal-content {
-            position: relative;
-            background-color: white;
-            margin: 15% auto;
-            padding: 30px;
-            width: 400px;
-            border-radius: 10px;
-            text-align: center;
-            animation: modalSlide 0.3s ease-out;
-        }
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
 
-        @keyframes modalSlide {
-            from {transform: translateY(-100px); opacity: 0;}
-            to {transform: translateY(0); opacity: 1;}
-        }
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
 
-        .modal-button {
-            background-color: #6c5ce7;
-            color: white;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
+  .modal-icon {
+    color: #58D68D;
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
 
-        .subject-name {
-            font-weight: bold;
-            text-align: left;
-        }
+  .modal button {
+    margin-top: 20px;
+  }
 
-        caption {
-            margin-top: 20px;
-            font-style: italic;
-            color: #666;
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            display: none;
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #6c5ce7;
-            border-radius: 50%;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            margin-top: -20px;
-            margin-left: -20px;
-            animation: spin 1s linear infinite;
-            z-index: 1001;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+  @media (max-width: 768px) {
+    table {
+      width: 95%;
+    }
+    
+    button {
+      width: 100%;
+      min-width: 120px;
+    }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Grade 12 & 13 Student Information</h1>
-        <h3>Zonal Education Office - Thanamalwila</h3>
 
-        <form id="studentForm" method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSf8qLi_mBt4BkFGDP0a5tUmIJAdrr0odZaahA6OcmMhssxteA/formResponse">
-            <!-- Your existing form content here with all the input fields -->
-            <!-- Keep all the same input fields and their entry.* names -->
-            
-            <div class="button-container">
-                <button type="submit">SUBMIT</button>
-                <button type="reset">RESET</button>
-            </div>
-            
-            <caption>ZEO - Thanamalwila</caption>
-        </form>
+<div class="container">
+  <h1>Grade 12 & 13 Student Information</h1>
+  <h3>Zonal Education Office - Thanamalwila</h3>
+
+  <form id="student-form" method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSf8qLi_mBt4BkFGDP0a5tUmIJAdrr0odZaahA6OcmMhssxteA/formResponse">
+    <table>
+      <tr>
+        <th>School Census Number</th>
+        <td><input name="entry.304947479" type="text" required></td>
+      </tr>
+      <tr>
+        <th>Name of the School</th>
+        <td><input name="entry.477505856" type="text" required></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th>SUBJECT NAME</th>
+        <th>GRADE 12</th>
+        <th>GRADE 13</th>
+      </tr>
+      
+      <tr class="section-header">
+        <th colspan="3">ARTS Stream</th>
+      </tr>
+      <tr>
+        <td>Sinhala</td>
+        <td><input name="entry.1091555470" type="number"></td>
+        <td><input name="entry.1134754378" type="number"></td>
+      </tr>
+      <tr>
+        <td>Buddhism</td>
+        <td><input name="entry.832013746" type="number"></td>
+        <td><input name="entry.122427761" type="number"></td>
+      </tr>
+      <tr>
+        <td>Buddhist Civilization</td>
+        <td><input name="entry.556098239" type="number"></td>
+        <td><input name="entry.1057003267" type="number"></td>
+      </tr>
+      <tr>
+        <td>Communication and Media Studies</td>
+        <td><input name="entry.575826754" type="number"></td>
+        <td><input name="entry.51050648" type="number"></td>
+      </tr>
+      <tr>
+        <td>Dancing</td>
+        <td><input name="entry.75671421" type="number"></td>
+        <td><input name="entry.350339750" type="number"></td>
+      </tr>
+      <tr>
+        <td>Geography</td>
+        <td><input name="entry.273565047" type="number"></td>
+        <td><input name="entry.893406830" type="number"></td>
+      </tr>
+      <tr>
+        <td>History</td>
+        <td><input name="entry.1471934607" type="number"></td>
+        <td><input name="entry.375560796" type="number"></td>
+      </tr>
+      <tr>
+        <td>Home Economics</td>
+        <td><input name="entry.1509964669" type="number"></td>
+        <td><input name="entry.2108110598" type="number"></td>
+      </tr>
+      <tr>
+        <td>Logic and Scientific Method</td>
+        <td><input name="entry.1124958449" type="number"></td>
+        <td><input name="entry.1925586489" type="number"></td>
+      </tr>
+      <tr>
+        <td>Oriental Music</td>
+        <td><input name="entry.891058446" type="number"></td>
+        <td><input name="entry.196546894" type="number"></td>
+      </tr>
+      <tr>
+        <td>Political Science</td>
+        <td><input name="entry.1187682813" type="number"></td>
+        <td><input name="entry.732357513" type="number"></td>
+      </tr>
+
+      <tr class="section-header">
+        <th colspan="3">Commerce Stream</th>
+      </tr>
+      <tr>
+        <td>Accounting</td>
+        <td><input name="entry.2078246398" type="number"></td>
+        <td><input name="entry.2114622738" type="number"></td>
+      </tr>
+      <tr>
+        <td>Business Studies</td>
+        <td><input name="entry.1742649925" type="number"></td>
+        <td><input name="entry.242353573" type="number"></td>
+      </tr>
+      <tr>
+        <td>Economics</td>
+        <td><input name="entry.229493485" type="number"></td>
+        <td><input name="entry.329406143" type="number"></td>
+      </tr>
+
+      <tr class="section-header">
+        <th colspan="3">Science & Mathematics Stream</th>
+      </tr>
+      <tr>
+        <td>Agriculture</td>
+        <td><input name="entry.1460496081" type="number"></td>
+        <td><input name="entry.1046754946" type="number"></td>
+      </tr>
+      <tr>
+        <td>Biology</td>
+        <td><input name="entry.1325303534" type="number"></td>
+        <td><input name="entry.725423949" type="number"></td>
+      </tr>
+      <tr>
+        <td>Physics</td>
+        <td><input name="entry.93813083" type="number"></td>
+        <td><input name="entry.297931887" type="number"></td>
+      </tr>
+      <tr>
+        <td>Chemistry</td>
+        <td><input name="entry.1034375519" type="number"></td>
+        <td><input name="entry.220907618" type="number"></td>
+      </tr>
+      <tr>
+        <td>Combined Mathematics</td>
+        <td><input name="entry.1315058362" type="number"></td>
+        <td><input name="entry.100688728" type="number"></td>
+      </tr>
+      <tr>
+        <td>Higher Mathematics</td>
+        <td><input name="entry.345074277" type="number"></td>
+        <td><input name="entry.128066045" type="number"></td>
+      </tr>
+
+      <tr class="section-header">
+        <th colspan="3">Technology Stream</th>
+      </tr>
+      <tr>
+        <td>Agro Technology</td>
+        <td><input name="entry.1271399857" type="number"></td>
+        <td><input name="entry.1132169250" type="number"></td>
+      </tr>
+      <tr>
+        <td>Engineering Technology</td>
+        <td><input name="entry.340955061" type="number"></td>
+        <td><input name="entry.1413573758" type="number"></td>
+      </tr>
+      <tr>
+        <td>ICT</td>
+        <td><input name="entry.1538822890" type="number"></td>
+        <td><input name="entry.1100567037" type="number"></td>
+      </tr>
+      <tr>
+        <td>Science For Technology</td>
+        <td><input name="entry.1394353172" type="number"></td>
+        <td><input name="entry.1113558056" type="number"></td>
+      </tr>
+      <tr>
+        <td>Bio System Technology</td>
+        <td><input name="entry.1409148374" type="number"></td>
+        <td><input name="entry.1613607049" type="number"></td>
+      </tr>
+    </table>
+
+    <div class="buttons-container">
+      <button type="submit">
+        <i class="fas fa-paper-plane"></i> SUBMIT
+      </button>
+      <button type="reset">
+        <i class="fas fa-redo"></i> RESET
+      </button>
     </div>
+  </form>
 
-    <!-- Loading Spinner -->
-    <div id="loadingSpinner" class="spinner"></div>
+  <div class="footer">
+    <p>ZEO - Thanamalwila</p>
+  </div>
+</div>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <h2>Success!</h2>
-            <p>Your form has been submitted successfully.</p>
-            <button class="modal-button" onclick="closeModal()">OK</button>
-        </div>
+<!-- Success Modal -->
+<div id="success-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-icon">
+      <i class="fas fa-check-circle"></i>
     </div>
+    <h2>Thank You!</h2>
+    <p>Your information has been successfully submitted.</p>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
 
-    <script>
-        // Prevent right-click
-        document.addEventListener("contextmenu", function(e) {
-            e.preventDefault();
-        });
+<script>
+// Prevent right-click
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+}, false);
 
-        // Form submission handling
-        document.getElementById('studentForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            if(confirm('Are you sure you want to submit?')) {
-                const spinner = document.getElementById('loadingSpinner');
-                spinner.style.display = 'block';
+// Form handling
+const form = document.getElementById('student-form');
+const modal = document.getElementById('success-modal');
 
-                try {
-                    // Submit to Google Forms
-                    const response = await fetch(this.action, {
-                        method: 'POST',
-                        body: new FormData(this),
-                        mode: 'no-cors' // Prevents CORS issues
-                    });
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  if (!form.checkValidity()) {
+    return;
+  }
 
-                    // Hide spinner and show success modal
-                    spinner.style.display = 'none';
-                    document.getElementById('successModal').style.display = 'block';
-                    
-                    // Reset form
-                    this.reset();
-                } catch (error) {
-                    spinner.style.display = 'none';
-                    alert('An error occurred. Please try again.');
-                    console.error('Error:', error);
-                }
-            }
-        });
+  if (confirm('Are you sure you want to submit this form?')) {
+    // Pre-fill zeros for empty number fields
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    numberInputs.forEach(input => {
+      if (input.value === '') {
+        input.value = '0';
+      }
+    });
 
-        // Reset confirmation
-        document.querySelector('button[type="reset"]').addEventListener('click', function(e) {
-            if(!confirm('Are you sure you want to reset all fields?')) {
-                e.preventDefault();
-            }
-        });
+    // Submit form
+    const formData = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: formData
+    })
+    .then(() => {
+      modal.style.display = 'flex';
+      form.reset();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    });
+  }
+});
 
-        // Close modal function
-        function closeModal() {
-            document.getElementById('successModal').style.display = 'none';
-        }
+// Reset confirmation
+document.querySelector('button[type="reset"]').addEventListener('click', function(e) {
+  if (!confirm('Are you sure you want to reset all form data?')) {
+    e.preventDefault();
+  }
+});
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('successModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
+// Close modal
+function closeModal() {
+  modal.style.display = 'none';
+}
 
-        // Number input validation
-        document.querySelectorAll('input[type="number"]').forEach(input => {
-            input.addEventListener('input', function() {
-                if (this.value < 0) this.value = 0;
-                if (this.value > 999) this.value = 999;
-            });
-        });
-    </script>
+// Close modal when clicking outside
+window.onclick = function(e) {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+}
+</script>
+
 </body>
 </html>
